@@ -63,4 +63,12 @@ public class PriceSelector : MonoBehaviour
 
         return true;
     }
+
+    public void ResetPrice()
+    {
+        for (int i = 0; i < digits.Count; i++)
+        {
+            digits[i].text = "0";
+        }
+    }
 }
