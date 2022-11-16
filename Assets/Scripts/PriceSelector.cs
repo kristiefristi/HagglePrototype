@@ -64,6 +64,7 @@ public class PriceSelector : MonoBehaviour
         return true;
     }
 
+    //TODO: Reset to base price instead of 0000
     public void ResetPrice()
     {
         for (int i = 0; i < digits.Count; i++)
