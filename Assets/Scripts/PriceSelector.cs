@@ -8,6 +8,8 @@ public class PriceSelector : MonoBehaviour
 
     public List<TextMeshProUGUI> digits;
 
+    private int basePrice = 0;
+
     public void IncreasePrice(TextMeshProUGUI tmp)
     {
         int count = int.Parse(tmp.text);
@@ -49,6 +51,26 @@ public class PriceSelector : MonoBehaviour
         tmp.text = count.ToString();
     }
 
+    public void SetPrice(int price)
+    {
+        basePrice = price;
+
+        char[] priceChars = basePrice.ToString().ToCharArray();
+        System.Array.Reverse(priceChars);
+
+        for (int i = 0; i < digits.Count; i++)
+        {
+            if (i <= priceChars.Length - 1)
+            {
+                digits[i].text = priceChars[i].ToString();
+            }
+            else
+            {
+                digits[i].text = "0";
+            }
+        }
+    }
+
     private bool CheckIfAllZero(TextMeshProUGUI start)
     {
         int startIndex = digits.IndexOf(start);
@@ -67,9 +89,6 @@ public class PriceSelector : MonoBehaviour
     //TODO: Reset to base price instead of 0000
     public void ResetPrice()
     {
-        for (int i = 0; i < digits.Count; i++)
-        {
-            digits[i].text = "0";
-        }
+        SetPrice(basePrice);
     }
 }
