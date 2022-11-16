@@ -28,4 +28,39 @@ public class PriceSelector : MonoBehaviour
 
         tmp.text = count.ToString();
     }
+
+    public void DecreasePrice(TextMeshProUGUI tmp)
+    {
+        int count = int.Parse(tmp.text);
+
+        if (count - 1 < 0)
+        {
+            count = 9;
+            if (CheckIfAllZero(tmp) == false)
+            {
+                DecreasePrice(digits[digits.IndexOf(tmp) + 1]);
+            }
+        }
+        else
+        {
+            count--;
+        }
+
+        tmp.text = count.ToString();
+    }
+
+    private bool CheckIfAllZero(TextMeshProUGUI start)
+    {
+        int startIndex = digits.IndexOf(start);
+
+        for (int i = startIndex + 1; i < digits.Count; i++)
+        {
+            if (int.Parse(digits[i].text) != 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
