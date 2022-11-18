@@ -7,6 +7,7 @@ public class PriceSelector : MonoBehaviour
 {
 
     public List<TextMeshProUGUI> digits;
+    public TextMeshProUGUI percentageText;
 
     private int basePrice = 0;
 
@@ -29,6 +30,8 @@ public class PriceSelector : MonoBehaviour
         }
 
         tmp.text = count.ToString();
+
+        UpdatePercentage();
     }
 
     public void DecreasePrice(TextMeshProUGUI tmp)
@@ -49,7 +52,23 @@ public class PriceSelector : MonoBehaviour
         }
 
         tmp.text = count.ToString();
+
+        UpdatePercentage();
     }
+
+    private void UpdatePercentage()
+    {
+        string p = "";
+
+        for (int i = digits.Count - 1; i >= 0; i--)
+        {
+            p += digits[i].text;
+        }
+
+        int currentPrice = int.Parse(p);
+
+        float percentage = (float)currentPrice / (float)basePrice;
+        percentageText.text = ((int)(percentage * 100)).ToString();    }
 
     public void SetPrice(int price)
     {
@@ -69,6 +88,8 @@ public class PriceSelector : MonoBehaviour
                 digits[i].text = "0";
             }
         }
+
+        UpdatePercentage();
     }
 
     private bool CheckIfAllZero(TextMeshProUGUI start)
@@ -86,7 +107,6 @@ public class PriceSelector : MonoBehaviour
         return true;
     }
 
-    //TODO: Reset to base price instead of 0000
     public void ResetPrice()
     {
         SetPrice(basePrice);
