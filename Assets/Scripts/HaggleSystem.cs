@@ -18,6 +18,7 @@ public class HaggleSystem : MonoBehaviour
     public TextMeshProUGUI patienceLevel;
 
     private CustomerSO currentCustomer;
+    private int tolerance;
 
     private void Start()
     {
@@ -39,5 +40,17 @@ public class HaggleSystem : MonoBehaviour
         currentCustomer = customers.GetRandom();
         customerArchetype.text = currentCustomer.archetype;
         patienceLevel.text = currentCustomer.initialPatience.ToString();
+
+        tolerance = Random.Range((int)currentCustomer.toleranceMinMax.x, (int)currentCustomer.toleranceMinMax.y);
+        Debug.Log($"{tolerance}");
+        Debug.Log($"Accept Bid: 100%-{100 + tolerance}%\n" +
+            $"Lose 1 Patience: {100 + tolerance}%-{100 + tolerance + (tolerance / 2)}%\n" +
+            $"Lose 2 Patience: {100 + tolerance + (tolerance / 2)}%-{100 + tolerance + ((tolerance / 2) * 2)}%\n" +
+            $"Lose 3 Patience: {100 + tolerance + ((tolerance / 2) * 2)}%+");
+    }
+
+    public void SuggestPrice()
+    {
+
     }
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archetype: Farmer
   initialPatience: 6
-  toleranceMinMax: {x: 20, y: 45}
+  toleranceMinMax: {x: 15, y: 30}

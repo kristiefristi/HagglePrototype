@@ -58,6 +58,12 @@ public class PriceSelector : MonoBehaviour
 
     private void UpdatePercentage()
     {
+        float percentage = (float)GetPrice() / (float)basePrice;
+        percentageText.text = ((int)(percentage * 100)).ToString();   
+    }
+
+    public int GetPrice()
+    {
         string p = "";
 
         for (int i = digits.Count - 1; i >= 0; i--)
@@ -65,10 +71,10 @@ public class PriceSelector : MonoBehaviour
             p += digits[i].text;
         }
 
-        int currentPrice = int.Parse(p);
+        int price = int.Parse(p);
 
-        float percentage = (float)currentPrice / (float)basePrice;
-        percentageText.text = ((int)(percentage * 100)).ToString();    }
+        return price;
+    }
 
     public void SetPrice(int price)
     {
