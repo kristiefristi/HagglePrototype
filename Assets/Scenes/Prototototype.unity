@@ -775,7 +775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -656, y: 339}
+  m_AnchoredPosition: {x: -655.9999, y: 339}
   m_SizeDelta: {x: -1411.62, y: -957.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230344059
@@ -1477,11 +1477,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089cd21304070fc45ba10ba4e76b6d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentProduct: {fileID: 11400000, guid: bee81722405768b479e1122cefacb6a4, type: 2}
+  currentProduct: {fileID: 11400000, guid: 46771272c1537b9428273f07ea35c5d0, type: 2}
+  customers:
+  - {fileID: 11400000, guid: a34eaf046473c02409ef5c48159eb528, type: 2}
+  - {fileID: 11400000, guid: 118ff36f564882f4eba92a3d00870a28, type: 2}
   priceSelector: {fileID: 1629841706}
   productName: {fileID: 862625818}
   basePrice: {fileID: 194400365}
   productImage: {fileID: 1516013311}
+  customerArchetype: {fileID: 636335416}
+  patienceLevel: {fileID: 804823279}
 --- !u!4 &633060812
 Transform:
   m_ObjectHideFlags: 0
@@ -3285,7 +3290,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New Customer", menuName = "Scriptable Objects/Customer", order = 1)]
+public class CustomerSO : ScriptableObject
+{
+    public string archetype;
+    public int initialPatience;
+    public Vector2 toleranceMinMax;
+}
