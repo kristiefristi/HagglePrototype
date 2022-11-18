@@ -11,6 +11,15 @@ public class PriceSelector : MonoBehaviour
 
     private int basePrice = 0;
 
+    public int Percentage
+    {
+        get
+        {
+            float p = (float)GetPrice() / (float)basePrice;
+            return (int)(p * 100);
+        }
+    }
+
     public void IncreasePrice(TextMeshProUGUI tmp)
     {
         int count = int.Parse(tmp.text);
@@ -58,8 +67,7 @@ public class PriceSelector : MonoBehaviour
 
     private void UpdatePercentage()
     {
-        float percentage = (float)GetPrice() / (float)basePrice;
-        percentageText.text = ((int)(percentage * 100)).ToString();   
+        percentageText.text = Percentage.ToString();   
     }
 
     public int GetPrice()

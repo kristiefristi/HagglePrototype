@@ -8,4 +8,5 @@ public class CustomerSO : ScriptableObject
     public string archetype;
     public int initialPatience;
     public Vector2 toleranceMinMax;
+    public int basePricePenalty;
 }
