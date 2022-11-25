@@ -9,6 +9,7 @@ public class CustomerSO : ScriptableObject
     public int initialPatience;
     public Vector2 toleranceMinMax;
     public int basePricePenalty;
+    public int maxToleranceInscrease = 8;
 
     [Header("Dialogue")]
     public string interested;

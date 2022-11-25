@@ -25,6 +25,7 @@ public class HaggleSystem : MonoBehaviour
     private int basePercentage = 100;
     private int patienceLevel = 0;
     private ProductSO currentProduct;
+    private bool firstBidDone = false;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class HaggleSystem : MonoBehaviour
     public void NewCustomer()
     {
         basePercentage = 100;
+        firstBidDone = false;
 
         currentCustomer = customers.GetRandom();
         customerArchetype.text = currentCustomer.archetype;
@@ -55,11 +57,9 @@ public class HaggleSystem : MonoBehaviour
         currentProduct = products.GetRandom();
         SetProduct(currentProduct);
 
-        Debug.Log($"{tolerance}");
-        Debug.Log($"Accept Bid: {basePercentage}%-{basePercentage + tolerance}%\n" +
-            $"Lose 1 Patience: {basePercentage + tolerance}%-{basePercentage + tolerance + (tolerance / 2)}%\n" +
-            $"Lose 2 Patience: {basePercentage + tolerance + (tolerance / 2)}%-{basePercentage + tolerance + ((tolerance / 2) * 2)}%\n" +
-            $"Lose 3 Patience: {basePercentage + tolerance + ((tolerance / 2) * 2)}%+");
+#if UNITY_EDITOR
+        DebugPercentages();
+#endif
     }
 
     private void SetPatienceLevel(int level)
@@ -97,13 +97,42 @@ public class HaggleSystem : MonoBehaviour
         {
             dialogueText.text = $"{currentCustomer.penalty2}\n(-2)";
             SetPatienceLevel(patienceLevel - 2);
+            RaiseTolerance(currentCustomer.maxToleranceInscrease / 2);
         }
         else if (suggestedPercentage >= basePercentage + tolerance + ((tolerance / 2) * 2)) //Patience -3
         {
             dialogueText.text = $"{currentCustomer.penalty3}\n(-3)";
             SetPatienceLevel(patienceLevel - 3);
+            if (suggestedPercentage <= 175)
+            {
+                RaiseTolerance(Random.Range(currentCustomer.maxToleranceInscrease / 2, currentCustomer.maxToleranceInscrease));
+            }
         }
+
+        firstBidDone = true;
     }
+
+    private void RaiseTolerance(int amount)
+    {
+        if (firstBidDone)
+            return;
+
+        basePercentage += amount;
+
+#if UNITY_EDITOR
+        DebugPercentages();
+#endif
+    }
+
+#if UNITY_EDITOR
+    private void DebugPercentages()
+    {
+        Debug.Log($"Accept Bid: {basePercentage}%-{basePercentage + tolerance}%\n" +
+            $"Lose 1 Patience: {basePercentage + tolerance}%-{basePercentage + tolerance + (tolerance / 2)}%\n" +
+            $"Lose 2 Patience: {basePercentage + tolerance + (tolerance / 2)}%-{basePercentage + tolerance + ((tolerance / 2) * 2)}%\n" +
+            $"Lose 3 Patience: {basePercentage + tolerance + ((tolerance / 2) * 2)}%+");
+    }
+#endif
 
     private void Update()
     {
