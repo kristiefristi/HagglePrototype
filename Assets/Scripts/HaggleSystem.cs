@@ -17,6 +17,8 @@ public class HaggleSystem : MonoBehaviour
     public TextMeshProUGUI customerArchetype;
     public TextMeshProUGUI patienceText;
     public TextMeshProUGUI dialogueText;
+    public GameObject nextCustomerButton;
+    public CanvasGroup digitsGroup;
 
     private CustomerSO currentCustomer;
     private int tolerance;
@@ -26,8 +28,6 @@ public class HaggleSystem : MonoBehaviour
 
     private void Start()
     {
-        currentProduct = products.GetRandom();
-        SetProduct(currentProduct);
         NewCustomer();
     }
 
@@ -51,6 +51,10 @@ public class HaggleSystem : MonoBehaviour
         basePercentage -= currentCustomer.basePricePenalty;
 
         tolerance = Random.Range((int)currentCustomer.toleranceMinMax.x, (int)currentCustomer.toleranceMinMax.y);
+
+        currentProduct = products.GetRandom();
+        SetProduct(currentProduct);
+
         Debug.Log($"{tolerance}");
         Debug.Log($"Accept Bid: {basePercentage}%-{basePercentage + tolerance}%\n" +
             $"Lose 1 Patience: {basePercentage + tolerance}%-{basePercentage + tolerance + (tolerance / 2)}%\n" +
@@ -64,6 +68,8 @@ public class HaggleSystem : MonoBehaviour
         {
             level = 0;
             dialogueText.text = dialogueText.text + $"\n\n{currentCustomer.fail}";
+            digitsGroup.interactable = false;
+            nextCustomerButton.SetActive(true);
             //Game Over Sequence;
         }
 
@@ -75,10 +81,12 @@ public class HaggleSystem : MonoBehaviour
     {
         int suggestedPercentage = priceSelector.Percentage;
 
-        if (suggestedPercentage >= basePercentage && suggestedPercentage < basePercentage + tolerance) //Accept Bid!
+        if (suggestedPercentage < basePercentage + tolerance) //Accept Bid!
         {
             Debug.Log("i'll faking  take it amet0");
             dialogueText.text = currentCustomer.acceptBid;
+            digitsGroup.interactable = false;
+            nextCustomerButton.SetActive(true);
         }
         else if (suggestedPercentage >= basePercentage + tolerance && suggestedPercentage < basePercentage + tolerance + (tolerance / 2)) //Patience -1
         {
@@ -94,6 +102,14 @@ public class HaggleSystem : MonoBehaviour
         {
             dialogueText.text = currentCustomer.penalty3;
             SetPatienceLevel(patienceLevel - 3);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            NewCustomer();
         }
     }
 }

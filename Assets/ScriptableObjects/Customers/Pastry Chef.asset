@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6405e4a4327875c40b4ac98cd0648e5d, type: 3}
+  m_Name: Pastry Chef
+  m_EditorClassIdentifier: 
+  archetype: Pastry Chef
+  initialPatience: 6
+  toleranceMinMax: {x: 17, y: 23}
+  basePricePenalty: 2
+  interested: What's all this then?
+  penalty1: Can't you go a bit lower?
+  penalty2: Sorry, can't do that.
+  penalty3: How about no.
+  acceptBid: You know what, I'll take it.
+  fail: This ain't it chief.

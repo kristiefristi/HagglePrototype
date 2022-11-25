@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6405e4a4327875c40b4ac98cd0648e5d, type: 3}
+  m_Name: Lucas
+  m_EditorClassIdentifier: 
+  archetype: Lucas
+  initialPatience: 11
+  toleranceMinMax: {x: 12, y: 21}
+  basePricePenalty: 0
+  interested: Long time no see! How much is this?
+  penalty1: A bit lower maybe?
+  penalty2: Haha, you're joking right?
+  penalty3: I know we're friends, but this...
+  acceptBid: You got yourself a deal!
+  fail: I'll see what you have in stock next time.

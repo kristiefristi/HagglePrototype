@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6405e4a4327875c40b4ac98cd0648e5d, type: 3}
+  m_Name: Aristocrat
+  m_EditorClassIdentifier: 
+  archetype: Aristocrat
+  initialPatience: 9
+  toleranceMinMax: {x: 15, y: 25}
+  basePricePenalty: 4
+  interested: This looks like a fine item, what's your price?
+  penalty1: Hmm... Almost there.
+  penalty2: Not what I imagined.
+  penalty3: I'm not made out of money...
+  acceptBid: Pleasure doing business!
+  fail: I'll take my business elsewhere.
