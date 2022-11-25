@@ -90,17 +90,17 @@ public class HaggleSystem : MonoBehaviour
         }
         else if (suggestedPercentage >= basePercentage + tolerance && suggestedPercentage < basePercentage + tolerance + (tolerance / 2)) //Patience -1
         {
-            dialogueText.text = currentCustomer.penalty1;
+            dialogueText.text = $"{currentCustomer.penalty1}\n(-1)";
             SetPatienceLevel(patienceLevel - 1);
         }
         else if (suggestedPercentage >= basePercentage + tolerance + (tolerance / 2) && suggestedPercentage < basePercentage + tolerance + ((tolerance / 2) * 2)) //Patience -2
         {
-            dialogueText.text = currentCustomer.penalty2;
+            dialogueText.text = $"{currentCustomer.penalty2}\n(-2)";
             SetPatienceLevel(patienceLevel - 2);
         }
         else if (suggestedPercentage >= basePercentage + tolerance + ((tolerance / 2) * 2)) //Patience -3
         {
-            dialogueText.text = currentCustomer.penalty3;
+            dialogueText.text = $"{currentCustomer.penalty3}\n(-3)";
             SetPatienceLevel(patienceLevel - 3);
         }
     }
