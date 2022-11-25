@@ -9,4 +9,12 @@ public class CustomerSO : ScriptableObject
     public int initialPatience;
     public Vector2 toleranceMinMax;
     public int basePricePenalty;
+
+    [Header("Dialogue")]
+    public string interested;
+    public string penalty1;
+    public string penalty2;
+    public string penalty3;
+    public string acceptBid;
+    public string fail;
 }

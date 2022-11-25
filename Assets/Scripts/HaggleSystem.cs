@@ -16,6 +16,7 @@ public class HaggleSystem : MonoBehaviour
     public Image productImage;
     public TextMeshProUGUI customerArchetype;
     public TextMeshProUGUI patienceText;
+    public TextMeshProUGUI dialogueText;
 
     private CustomerSO currentCustomer;
     private int tolerance;
@@ -45,6 +46,7 @@ public class HaggleSystem : MonoBehaviour
 
         currentCustomer = customers.GetRandom();
         customerArchetype.text = currentCustomer.archetype;
+        dialogueText.text = currentCustomer.interested;
         SetPatienceLevel(currentCustomer.initialPatience);
         basePercentage -= currentCustomer.basePricePenalty;
 
@@ -58,6 +60,13 @@ public class HaggleSystem : MonoBehaviour
 
     private void SetPatienceLevel(int level)
     {
+        if (level <= 0)
+        {
+            level = 0;
+            dialogueText.text = dialogueText.text + $"\n\n{currentCustomer.fail}";
+            //Game Over Sequence;
+        }
+
         patienceLevel = level;
         patienceText.text = patienceLevel.ToString();
     }
@@ -69,17 +78,21 @@ public class HaggleSystem : MonoBehaviour
         if (suggestedPercentage >= basePercentage && suggestedPercentage < basePercentage + tolerance) //Accept Bid!
         {
             Debug.Log("i'll faking  take it amet0");
+            dialogueText.text = currentCustomer.acceptBid;
         }
         else if (suggestedPercentage >= basePercentage + tolerance && suggestedPercentage < basePercentage + tolerance + (tolerance / 2)) //Patience -1
         {
+            dialogueText.text = currentCustomer.penalty1;
             SetPatienceLevel(patienceLevel - 1);
         }
         else if (suggestedPercentage >= basePercentage + tolerance + (tolerance / 2) && suggestedPercentage < basePercentage + tolerance + ((tolerance / 2) * 2)) //Patience -2
         {
+            dialogueText.text = currentCustomer.penalty2;
             SetPatienceLevel(patienceLevel - 2);
         }
         else if (suggestedPercentage >= basePercentage + tolerance + ((tolerance / 2) * 2)) //Patience -3
         {
+            dialogueText.text = currentCustomer.penalty3;
             SetPatienceLevel(patienceLevel - 3);
         }
     }

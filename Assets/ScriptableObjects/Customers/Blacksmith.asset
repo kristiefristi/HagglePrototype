@@ -16,3 +16,9 @@ MonoBehaviour:
   initialPatience: 3
   toleranceMinMax: {x: 10, y: 20}
   basePricePenalty: 5
+  interested: Hmmm. How much for this?
+  penalty1: That's a bit high...
+  penalty2: So much?!
+  penalty3: Are you trying to rip me off?
+  acceptBid: I'll take it for that price!
+  fail: You know what, nevermind...
